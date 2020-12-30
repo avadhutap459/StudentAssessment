@@ -1,0 +1,93 @@
+.card {
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  
+  }
+  
+  .card:hover {
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,0.2);
+  }
+  .card-header {
+      background-color: #3f51b5;
+      color: white;
+  }
+  
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+    display: block;
+    position: relative;
+  }
+  
+  @keyframes spinner {
+      to {transform: rotate(360deg);}
+    }
+     
+    .spinner:before {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin-top: -10px;
+      margin-left: -10px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      border-top-color: #000000;
+      animation: spinner .8s linear infinite;
+    }
+    .example-stretched-tabs {
+      max-width: 647px;
+      background-color: white;
+    }
+    .div1 {
+      width: 800px;
+      height: 70px;
+      border: 1px solid black;
+    }
+  
+  .alert-info {
+      width: 61%;
+  }
+  
+  
+  .online {
+    background-color: green;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    height: 100%;
+    animation:online-response 0.5s 1;
+      -webkit-animation:online-response 0.5s 1;
+      animation-fill-mode: forwards;
+  
+      animation-delay:2s;
+      -webkit-animation-delay:1s; /* Safari and Chrome */
+      -webkit-animation-fill-mode: forwards;
+  }
+  
+  .offline {
+    background-color: red;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    height: 100%;
+  }
+  
+  
+  @keyframes online-response{
+      from {opacity :1;}
+      to {opacity :0;}
+  }
+  
+  @-webkit-keyframes online-response{
+      from {opacity :1;}
+      to {opacity :0;}
+  }

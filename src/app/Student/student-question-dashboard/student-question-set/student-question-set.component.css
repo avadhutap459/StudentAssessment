@@ -1,0 +1,22 @@
+.progress-bar.progress-bar-success {
+    background: #65b12d;
+}
+.text-success {
+    color: #65b12d!important;
+}
+.progress-bar.progress-bar-info {
+    background: #006DF0;
+}
+.text-info {
+    color: #006DF0!important;
+}
+.progress-bar.progress-bar-danger {
+    background:#738276 ;
+}
+.text-danger {
+    color: #738276!important;
+}
+
+.card-stats .card-body {
+    padding: 0px !important;
+}

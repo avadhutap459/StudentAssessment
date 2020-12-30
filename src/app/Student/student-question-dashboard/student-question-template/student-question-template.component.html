@@ -1,0 +1,63 @@
+<app-student-question-set [CurrentTestId]="CurrentTestId"></app-student-question-set>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-head-row">
+                    <div class="card-title">{{Question.CurrentSetName}}</div>
+                    <div class="card-tools">
+                        <b>Question {{Question.CompletedQuestion}} of {{Question.TotalQuestion}}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form #QuestionForm='ngForm'>
+                    <div *ngFor="let Q of Question.lstQuestionModel;let j=index;">
+                        <div class="form-group" [class.has-error]="Q.QuesId.invalid && Q.QuesId.touched">
+                            <mat-label><b>Question : </b> {{Q.Question}}</mat-label>
+                            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                                required [name]="Q.QuesId" #{{Q.QuesId}}="ngModel" [(ngModel)]="Q.ResponseValue">
+                                <mat-radio-button class="example-radio-button" *ngFor="let QuesRes of Q.lstQuestionRes"
+                                    [value]="QuesRes.ResponseId">
+                                    <span style="font-weight: 100;">{{QuesRes.ResponseText}}</span>
+                                </mat-radio-button>
+                            </mat-radio-group>
+                            <span class="help-block" *ngIf="Q.QuesId.invalid && Q.QuesId.touched">
+                                Please select Question
+                            </span>
+                        </div>
+                    </div>
+                    <div *ngIf="QuestionForm.invalid;then FormValidation else loading_content"></div>
+                    <ng-template #FormValidation>
+                        <button mat-button [hidden]="!Question.IsShowNextButton" (click)="NextAndSaveQuestion()"
+                            type="button" style="cursor: pointer;float: right;top: -25px;"
+                            [disabled]="QuestionForm.invalid" class="mat-raised-button mat-primary"
+                            [class.spinner]="loading">
+                            Next
+                        </button>
+                        <button mat-button [hidden]="!Question.IsShowSubmitButton" (click)="saveQuestion()"
+                            type="submit" style="cursor: pointer;float: right;top: -25px;"
+                            [disabled]="QuestionForm.invalid" class="mat-raised-button mat-primary"
+                            [class.spinner]="loading">
+                            Submit Module
+                        </button>
+                    </ng-template>
+                    <ng-template #loading_content>
+                        <button mat-button [hidden]="!Question.IsShowNextButton" (click)="NextAndSaveQuestion()"
+                            type="button" style="cursor: pointer;float: right;top: -25px;" [disabled]="loading"
+                            class="mat-raised-button mat-primary" [class.spinner]="loading">
+                            Next 
+                        </button>
+                        <button mat-button [hidden]="!Question.IsShowSubmitButton" (click)="saveQuestion()"
+                            type="submit" style="cursor: pointer;float: right;top: -25px;" [disabled]="loading"
+                            class="mat-raised-button mat-primary" [class.spinner]="loading">
+                            Submit Module
+                        </button>
+                    </ng-template>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

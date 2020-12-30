@@ -1,0 +1,68 @@
+<app-student-question-set [CurrentTestId]="CurrentTestId"></app-student-question-set>
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-head-row">
+                    <div class="card-title">{{Question.CurrentSetName}}</div>
+                    <div class="card-tools">
+                        <b>Question {{Question.CompletedQuestion}} of {{Question.TotalQuestion}}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <div class="toggle">
+                        <input type="radio" name="Response" />
+                        <label for="Response1"><b>Response A</b></label>
+                        <input type="radio" name="Response" />
+                        <label for="Response2"><b>Response B</b></label>
+                    </div>
+                    <form #QuestionForm="ngForm" ngNativeValidate (ngSubmit)="SaveQuestion(QuestionForm)">
+                        
+                        <div class="toggle" *ngFor="let Q of Question.lstQuestionModel;let j=index;">
+                            
+                            <input required type="radio" 
+                                   [name]="Q.QuesId" #{{Q.QuesId}}="ngModel"
+                                   [(ngModel)]="Q.ResponseValue" 
+                                   [value]="this.RetrunQuestionResponseId(Q,0)" 
+                                   [id]="this.RetrunQuestionResponseId(Q,0)"  />
+                            <label [for]="this.RetrunQuestionResponseId(Q,0)">
+                                {{RetrunQuestionResponseText(Q,0)}}
+                            </label>
+                            <input required type="radio" 
+                                   [name]="Q.QuesId" #{{Q.QuesId}}="ngModel"
+                                   [(ngModel)]="Q.ResponseValue" 
+                                   [value]="this.RetrunQuestionResponseId(Q,1)" 
+                                   [id]="this.RetrunQuestionResponseId(Q,1)"  />
+                            <label [for]="this.RetrunQuestionResponseId(Q,1)">
+                                {{RetrunQuestionResponseText(Q,1)}}
+                            </label>
+                            
+                        </div>
+                        
+                        <div *ngIf="QuestionForm.invalid;then FormValidation else loading_content">here is ignored
+                        </div>
+                        <ng-template #FormValidation>
+                            <button type="submit" style="cursor: pointer;float: right;" mat-raised-button
+                                color="primary" [class.spinner]="loading" [disabled]="QuestionForm.invalid">
+                                Submit Module
+                            </button>
+                        </ng-template>
+                        <ng-template #loading_content>
+                            <button type="submit" style="cursor: pointer;float: right;" mat-raised-button
+                                color="primary" [class.spinner]="loading" [disabled]="loading">
+                                Submit Module
+                            </button>
+                        </ng-template>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

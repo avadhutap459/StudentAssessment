@@ -1,0 +1,18 @@
+
+<div *ngIf="this.IsQuestionDisplay">
+    <div *ngIf="Question.CurrentSetId === 1 || Question.CurrentSetId === 3">
+        <app-student-question-template [Question]="Question"></app-student-question-template>
+    </div>
+    <div *ngIf="Question.CurrentSetId === 2">
+        <app-student-question-table-template [Question]="Question"></app-student-question-table-template>
+    </div>
+</div>
+<div *ngIf="this.IsTestComplete">
+    <app-student-complete-test [Question]="Question"></app-student-complete-test>
+</div>
+<div *ngIf="this.IsScordBoardDisplay">
+    <app-student-score [Question]="Question"></app-student-score>
+</div>
+
+
+
